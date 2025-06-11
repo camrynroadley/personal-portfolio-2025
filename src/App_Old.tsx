@@ -75,12 +75,13 @@ function App() {
         <Navbar scrolled={scrolled} />
         <main
           ref={mainRef}
-          className="relative h-screen overflow-y-scroll scroll-smooth bg-white"
+          className="relative h-screen overflow-y-scroll scroll-smooth"
         >
-          {sections.map((section) => (
+          {sections.map((section, i) => (
             <section
               key={section.id}
-              className="h-screen"
+              className={`sticky top-0 h-screen`}
+              style={{ zIndex: i + 1 }}
             >
               {section.component}
             </section>

@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
-const Navbar: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
+const Navbar = ({ scrolled }: { scrolled: boolean }) => {
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrolled(window.scrollY > 10);
+  //   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   return (
-    <>
-      <div className="fixed top-4 left-6 z-50 text-sm text-white tracking-tight">Camryn Roadley</div>
+        <>
+      {/* <div className="fixed top-4 left-6 z-50 text-sm text-black tracking-tight font-medium">Camryn Roadley</div>
+      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-40">
+        <nav
+          className="px-6 py-3 flex items-center space-x-8 text-sm text-black font-medium tracking-tight bg-black/10 rounded-full">
+          <a href="#work" className="hover:underline transition">Work</a>
+          <a href="#projects" className="hover:underline transition">Projects</a>
+          <a href="#about" className="hover:underline transition">About</a>
+        </nav>
+      </div> */}
+      <div className="fixed top-4 left-6 z-50 text-sm text-black tracking-tight font-medium">Camryn Roadley</div>
       <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 ease-in-out">
         <nav
-          className={`px-6 py-3 flex items-center space-x-8 text-sm text-white tracking-tight transition-all duration-500 ease-in-out
+          className={`px-6 py-3 flex items-center space-x-8 text-sm text-black font-medium tracking-tight transition-all duration-500 ease-in-out
             ${
               scrolled
                 ? 'bg-black/50 backdrop-blur-md shadow-lg rounded-full'
@@ -29,7 +36,30 @@ const Navbar: React.FC = () => {
           <a href="#about" className="hover:underline transition">About</a>
         </nav>
       </div>
-    </>
+      {/* <div className="fixed top-4 left-6 z-50 text-sm text-black tracking-tight font-medium">
+      Camryn Roadley
+    </div>
+    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 ease-in-out">
+      <nav
+        className={`px-6 py-3 flex items-center space-x-8 text-sm text-black font-medium tracking-tight transition-all duration-500 ease-in-out
+          ${
+            scrolled
+              ? "bg-black/50 backdrop-blur-md shadow-lg rounded-full"
+              : "bg-transparent"
+          }`}
+      >
+        <a href="#work" className="hover:underline transition">
+          Work
+        </a>
+        <a href="#projects" className="hover:underline transition">
+          Projects
+        </a>
+        <a href="#about" className="hover:underline transition">
+          About
+        </a>
+      </nav>
+    </div> */}
+   </>
   );
 };
 

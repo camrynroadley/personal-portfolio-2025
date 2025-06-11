@@ -8,15 +8,21 @@ import { useBreakpoint } from "../hooks/useBreakpoint";
 type BlobGrowerProps = {
   className?: string;
   children?: ReactNode;
+  isLoaded?: boolean;
 };
 
-export default function BlobGrower({ className, children }: BlobGrowerProps) {
+export default function BlobGrower({
+  className,
+  children,
+  isLoaded,
+}: BlobGrowerProps) {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setExpanded(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isLoaded) {
+      setExpanded(true);
+    }
+  }, [isLoaded]);
 
   const breakpoint = useBreakpoint();
 
@@ -37,21 +43,22 @@ export default function BlobGrower({ className, children }: BlobGrowerProps) {
 
   return (
     <div
-      className={clsx("flex items-center justify-center h-screen", className)}
+      className={clsx("flex items-center justify-center h-screen bg-black", className)}
     >
       <motion.div
         animate={{
-          width: expanded ? '100%' : 50,
-          height: expanded ? '80%' : 50,
-          borderRadius: expanded ? "3rem" : "50%",
+          width: expanded ? "100%" : 50,
+          height: expanded ? "100%" : 50,
+          borderRadius: expanded ? "0%" : "50%",
           backgroundColor: "#D5D15D",
         }}
         transition={{
           type: "spring",
           stiffness: 100,
           damping: 15,
+          duration: 300,
         }}
-        className="shadow-lg flex items-center justify-center"
+        className="flex items-center justify-center"
       >
         {expanded ? children : null}
       </motion.div>

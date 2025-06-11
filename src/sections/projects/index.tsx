@@ -15,14 +15,12 @@ const Projects = ({ handleCardClicked }: ProjectsProps) => {
   if (loading) return <p>Loading projects...</p>;
 
   return (
-    <section className="w-4/5 mx-auto">
-      <div className="w-80% mx-auto">
-        <div className="mb-8">
-          <p className="text-white">
+    <section className="w-full min-h-screen flex items-center justify-center bg-black">
+      <div className="w-4/5 md:w-2/3 mx-auto">
+          <p className="text-white mb-12 md:mb-16">
             I maintain my technical skills and experiment with new tools through
             side projects.
           </p>
-        </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {projects.map((project: Project) => {

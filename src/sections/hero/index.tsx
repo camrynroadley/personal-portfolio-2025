@@ -1,82 +1,70 @@
-import React from "react";
-import "./index.css";
+import React, { useState, useEffect } from "react";
 import Tag from "../../components/Tag";
-import BlobGrower from "../../components/BlobGrower";
+import "./index.css";
 import BlurText from "../../components/BlurText";
-import FallingIn from "../../components/FallingIn";
-
-const handleAnimationComplete = () => {
-  console.log("Animation completed!");
-};
+import BlobGrower from "../../components/BlobGrower";
+import FloatingTag from "../../components/FloatingTag";
 
 const Hero = () => {
-  return (
-    <section className="w-full min-h-screen flex items-center justify-center">
-      <BlobGrower className="relative w-4/5 mx-auto">
-        <BlurText
-          text="Five years of development experience with a passion for leading squads and managing technical programs."
-          delay={200}
-          animateBy="words"
-          direction="top"
-          onAnimationComplete={() => console.log("Animation completed!")}
-          className="text-4xl sm:text-5xl md:text-6xl text-black tracking-tight px-6 md:px-16"
-        />
-        <FallingIn delay={300}>
-          <Tag
-            text="Blending"
-            className="absolute top-10 left-6 sm:top-16 sm:left-20 text-xs sm:text-sm md:top-2/5 md:left-1/6"
-          />
-        </FallingIn>
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-        <Tag
-          text="technical"
-          className="absolute top-10 left-6 sm:top-16 sm:left-20 text-xs sm:text-sm md:top-2/5 md:left-1/6"
-        />
-        <Tag
-          text="skills"
-          className="absolute top-10 left-6 sm:top-16 sm:left-20 text-xs sm:text-sm md:top-3/5 md:left-1/3"
-        />
-        <Tag
-          text="with"
-          className="absolute top-10 left-6 sm:top-16 sm:left-20 text-xs sm:text-sm md:top-2/5 md:left-2/3"
-        />
-        <Tag
-          text="leadership"
-          className="absolute top-10 left-6 sm:top-16 sm:left-20 text-xs sm:text-sm md:top-2/5 md:left-4/6"
-        />
-        <div className="absolute w-3/4 bottom-32 md:bottom-32 text-sm md:text-sm text-center text-black tracking-tight">
-          Full-stack developer at TELUS based in Vancouver, BC
-        </div>
+  useEffect(() => {
+    document.fonts.ready.then(() => setFontsLoaded(true));
+  }, []);
+
+  return (
+    <>
+      <BlobGrower isLoaded={fontsLoaded}>
+        <section className="w-full min-h-screen flex items-center justify-center bg-white">
+          <div className="relative w-[90vw] max-w-[1100px] h-[80vh] flex items-center justify-center">
+            <BlurText
+              text="Passionate about user experiences and the teams that build them."
+              delay={200}
+              animateBy="words"
+              direction="top"
+              className="text-center font-semibold text-5xl sm:text-6xl md:text-[6rem]/22 text-black tracking-tight px-8 sm:px-12 md:px-20"
+            />
+            {/* Driven by great user experiences—and the teams behind them.
+Building great UX starts with great teams. */}
+            <Tag
+              text="Blending"
+              outerDivClassName="absolute top-[44%] left-[12%] text-xs sm:text-sm"
+              innerDivClassName="bg-[#F4799A]"
+              delay={1}
+            />
+            <Tag
+              text="technical"
+              outerDivClassName="absolute top-[37%] left-[28%] text-xs sm:text-sm"
+              innerDivClassName="bg-[#F2FF9C]"
+              delay={1.4}
+            />
+            <Tag
+              text="skills"
+              outerDivClassName="absolute top-[46%] left-[45%] text-xs sm:text-sm"
+              innerDivClassName="bg-[#FFC399]"
+              delay={1.8}
+            />
+            <Tag
+              text="with"
+              outerDivClassName="absolute top-[52%] right-[30%] text-xs sm:text-sm"
+              innerDivClassName="bg-[#F9E8F9]"
+              delay={2.2}
+            />
+            <Tag
+              text="leadership"
+              outerDivClassName="absolute top-[60%] right-[12%] text-xs sm:text-sm"
+              innerDivClassName="bg-[#B8C466]"
+              delay={2.6}
+            />
+
+            <div className="absolute bottom-0 text-center text-base md:text-lg font-medium text-black tracking-tight px-4">
+              Full-stack developer at TELUS based in Vancouver, BC
+            </div>
+          </div>
+        </section>
       </BlobGrower>
-    </section>
+    </>
   );
 };
-
-// const Hero: React.FC = () => {
-//   return (
-//     <section className="w-full h-screen flex items-center justify-center">
-//       <BlobGrower className="relative">
-//         <BlurText
-//           text="Five years of development experience with a passion for leading squads and managing technical programs."
-//           delay={200}
-//           animateBy="words"
-//           direction="top"
-//           onAnimationComplete={handleAnimationComplete}
-//           className="text-7xl text-black tracking-tight"
-//         />
-//         <Tag text="sample" className="absolute top-72 left-32" />
-//          <div className="absolute bottom-32 tracking-tight">Full-stack developer at TELUS based in Vancouver, BC</div>
-//       </BlobGrower>
-//       {/* <div className="flex relative bg-[#D5D15D] h-4/5 rounded-3xl items-center justify-center text-center px-6">
-//         <h1 className="w-4/5 text-6xl font-medium text-black tracking-tight">
-//           Five years of development experience with a passion for leading squads
-//           and managing technical programs.
-//         </h1>
-//         <Tag text="sample" className="absolute top-16 left-32" />
-//         <div className="absolute bottom-8 tracking-tight">Full-stack developer at TELUS based in Vancouver, BC</div>
-//       </div> */}
-//     </section>
-//   );
-// };
 
 export default Hero;

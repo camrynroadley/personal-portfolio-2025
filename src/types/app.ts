@@ -7,3 +7,16 @@ export interface Project {
     github_link?: string,
     tags?: string[],
 }
+
+export interface Responsibility {
+    label: string,
+    value: number,
+}
+
+export interface Role {
+    id: number,
+    title: string,
+    timeframe?: string,
+    description?: string,
+    responsibilities?: Responsibility[],
+}
