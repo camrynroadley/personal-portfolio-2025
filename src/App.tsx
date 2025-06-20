@@ -1,23 +1,43 @@
 import { useState, useEffect, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import "./App.css";
+import { useScroll, useTransform, useSpring, motion } from "framer-motion";
+import "./index.css";
+import "./assets/fontawesome";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/hero";
-import Work from "./sections/work";
-import Projects from "./sections/projects";
-import About from "./sections/about";
-import Footer from "./sections/footer";
-import { Modal } from "./components/Modal";
+import Spinner from "./components/Spinner";
+import { Bento } from "./sections/bento";
+
 
 function App() {
   const [mounted, setMounted] = useState(false);
-  const [showBigSandModal, setShowBigSandModal] = useState(false);
-  const [showPortfolioModal, setShowPortfolioModal] = useState(false);
-
-  // Inside your component
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
-  console.log('*** scrolled: ', scrolled)
+
+  const { scrollY } = useScroll();
+  const [navbarTheme, setNavbarTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    return scrollY.onChange((y) => {
+      // Assuming Hero is the first 100vh (adjust as needed)
+      setNavbarTheme(y < window.innerHeight * 0.9 ? "dark" : "light");
+    });
+  }, [scrollY]);
+
+  const [selected, setSelected] = useState<"About" | "Work" | "Projects" | "">(
+    ""
+  );
+
+  const rawYSticky = useTransform(scrollY, [0, 800], ["10%", "0%"]);
+  const ySticky = useSpring(rawYSticky, {
+    stiffness: 40,
+    damping: 22,
+  });
+
+  const aboutRef = useRef<HTMLElement>(null);
+  const projectsRef = useRef<HTMLElement>(null);
+  const connectRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const main = mainRef.current;
@@ -32,20 +52,33 @@ function App() {
   }, []);
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    document.fonts.ready.then(() => setFontsLoaded(true));
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const aboutTop = aboutRef.current?.offsetTop || 0;
+      const projectsTop = projectsRef.current?.offsetTop || 0;
+      const connectTop = connectRef.current?.offsetTop || 0;
+      const buffer = 100;
+
+      if (scrollY >= connectTop - buffer) {
+        setSelected("Connect");
+      } else if (scrollY >= projectsTop - buffer) {
+        setSelected("Projects");
+      } else {
+        setSelected("About");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (!mounted) return null;
 
-  const handleCloseBigSandModal = () => {
-    setShowBigSandModal(false);
-  };
-
-  const handleCardClicked = (slug: string) => {
-    console.log("*** card clicked: ", slug);
-    if (slug === "big_sand") {
-      setShowBigSandModal(true);
-    } else if (slug === "portfolio") {
-      setShowPortfolioModal(true);
-    }
-  };
 
   const theme = createTheme({
     typography: {
@@ -53,39 +86,31 @@ function App() {
     },
   });
 
-  const sections = [
-    { id: "hero", component: <Hero /> },
-    { id: "work", component: <Work /> },
-    {
-      id: "projects",
-      component: <Projects handleCardClicked={handleCardClicked} />,
-    },
-    { id: "about", component: <About /> },
-    { id: "footer", component: <Footer /> },
-  ];
-
   return (
     <ThemeProvider theme={theme}>
-      <div className="relative">
-        {showBigSandModal && (
-          <Modal isOpen={showBigSandModal} onClose={handleCloseBigSandModal}>
-            <h1>test big sand</h1>
-          </Modal>
+      <div className="relative bg-white">
+        {!fontsLoaded ? (
+          <Spinner />
+        ) : (
+          <>
+            <Navbar
+              selected={selected}
+              setSelected={setSelected}
+              theme={navbarTheme}
+            />
+
+            <main ref={mainRef}>
+              <section className="sticky top-0 h-full z-10">
+                <Hero />
+              </section>
+              <section className="relative z-20 bg-transparent">
+                <motion.div style={{ y: ySticky }} className="w-full">
+                  <Bento />
+                </motion.div>
+              </section>
+            </main>
+          </>
         )}
-        <Navbar scrolled={scrolled} />
-        <main
-          ref={mainRef}
-          className="relative h-screen overflow-y-scroll scroll-smooth bg-white"
-        >
-          {sections.map((section) => (
-            <section
-              key={section.id}
-              className="h-screen"
-            >
-              {section.component}
-            </section>
-          ))}
-        </main>
       </div>
     </ThemeProvider>
   );

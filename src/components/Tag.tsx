@@ -1,4 +1,4 @@
-import React, { type JSX, useEffect, useRef, useState } from "react";
+import { type JSX, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { motion } from "framer-motion";
 
