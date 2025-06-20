@@ -28,7 +28,7 @@ export default function SlideFadeIn({ children, delay = 0, className = "" }: Sli
       className={className}
       initial="hidden"
       animate={controls}
-      transition={{ duration: 2, delay }}
+      transition={{ duration: 1, delay }}
       variants={{
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0 },

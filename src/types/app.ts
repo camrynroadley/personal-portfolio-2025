@@ -19,4 +19,5 @@ export interface Role {
     timeframe?: string,
     description?: string,
     responsibilities?: Responsibility[],
+    isCurrentRole?: boolean;
 }

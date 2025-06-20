@@ -1,49 +1,32 @@
-import React, { useState } from "react";
 import type { Role } from "../types/app";
 import PieAnimation, { CustomLegend } from "./PieChart";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { StaticTag } from "./StaticTag";
 
-export const RolesCarousel = ({ roles }: { roles: Role[] }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const role = roles[selectedIndex];
-
-  const prev = () => {
-    setSelectedIndex((i) => (i === 0 ? roles.length - 1 : i - 1));
-  };
-
-  const next = () => {
-    setSelectedIndex((i) => (i === roles.length - 1 ? 0 : i + 1));
-  };
-
+interface RolesCarouselProps {
+  role: Role;
+}
+export const RolesCarousel = ({ role }: RolesCarouselProps) => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 text-white">
-        {role.responsibilities && (
-          <PieAnimation responsibilities={role.responsibilities} />
-        )}
-        <div className="flex flex-col space-y-3">
-          <p className="text-base">{role.timeframe}</p>
-          <p className="text-2xl md:text-4xl">{role.title}</p>
-          <p className="text-base">{role.description}</p>
+    <div className="relative w-full overflow-visible">
+      <div className="relative bg-[#2D2D2D] w-full rounded-xl shadow-lg px-4 py-8 overflow-visible">
+        <div className="grid md:grid-cols-3 relative">
           {role.responsibilities && (
-            <CustomLegend responsibilities={role.responsibilities} />
+            <div className="relative col-span-1 flex justify-center items-center">
+              <div className="absolute top-1/2 -translate-y-1/2 -left-12 z-20">
+                <PieAnimation responsibilities={role.responsibilities} />
+              </div>
+            </div>
           )}
-          <div className="mt-4 flex space-x-1">
-            <button
-              onClick={prev}
-              aria-label="Previous role"
-              className="flex items-center justify-center hover:cursor-pointer transition-transform duration-200 hover:scale-110"
-            >
-              <ChevronLeftIcon fontSize="large" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next role"
-              className="flex items-center justify-center hover:cursor-pointer transition-transform duration-200 hover:scale-110"
-            >
-              <ChevronRightIcon fontSize="large" />
-            </button>
+          <div className="col-span-2 flex flex-col justify-center space-y-3 px-4 md:px-8">
+            <div className="flex flex-row space-x-2">
+              <p className="text-sm text-gray-300">{role.timeframe}</p>
+              {role.isCurrentRole && <StaticTag text="Current Role" />}
+            </div>
+            <p className="text-3xl font-medium text-white">{role.title}</p>
+            <p className="text-base text-gray-300">{role.description}</p>
+            {role.responsibilities && (
+              <CustomLegend responsibilities={role.responsibilities} />
+            )}
           </div>
         </div>
       </div>

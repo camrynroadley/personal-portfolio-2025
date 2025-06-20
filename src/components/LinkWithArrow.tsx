@@ -1,4 +1,3 @@
-import React from "react";
 import { clsx } from "clsx";
 
 interface LinkWithArrowProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -12,14 +11,14 @@ const LinkWithArrow = ({ children, href, className, ...props }: LinkWithArrowPro
     <a
       href={href}
       className={clsx(
-        "group inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors",
+        "group inline-flex items-center font-medium transition-colors hover:underline",
         className
       )}
       {...props}
     >
       <span>{children}</span>
       <svg
-        className="ml-1 h-4 w-4 text-blue-600 transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+        className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
