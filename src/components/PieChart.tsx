@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
-  import { valueFormatter } from "../sections/bento/work/webUsageStats";
 import type { Responsibility } from "../types/app";
 
 interface PieAnimationProps {
@@ -15,19 +14,30 @@ const colors = ["#FE7FA2", "#F9E8F9", "#FFC399", "#F2FF9C", "#D5D15D"];
 
 export default function PieAnimation({ responsibilities }: PieAnimationProps) {
   return (
-    <Box sx={{ width: "100%", overflow: "visible" }}>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 300,
+        mx: "auto",
+        aspectRatio: "1 / 1",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <PieChart
         colors={colors}
-        height={300}
-        width={300}
         hideLegend
         series={[
           {
             data: responsibilities.slice(0, 5),
-            innerRadius: 50,
+            innerRadius: 30,
             highlightScope: { fade: "global", highlight: "item" },
-            faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
-            valueFormatter,
+            faded: {
+              innerRadius: 30,
+              additionalRadius: -30,
+              color: "gray",
+            },
           },
         ]}
         slotProps={{

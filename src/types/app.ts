@@ -16,6 +16,7 @@ export interface Responsibility {
 export interface Role {
     id: number,
     title: string,
+    company: string,
     timeframe?: string,
     description?: string,
     responsibilities?: Responsibility[],

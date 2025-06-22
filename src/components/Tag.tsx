@@ -7,9 +7,10 @@ interface TagProps {
   isAnimated?: boolean;
   isFloating?: boolean;
   strength?: number;
-  delay?: number; // 👈 NEW
+  delay?: number;
   outerDivClassName?: string;
   innerDivClassName?: string;
+  style?: React.CSSProperties;
 }
 
 const Tag = ({
@@ -20,6 +21,7 @@ const Tag = ({
   delay = 0,
   outerDivClassName,
   innerDivClassName,
+  style,
 }: TagProps): JSX.Element => {
   const tagRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -55,20 +57,22 @@ const Tag = ({
   };
 
   return (
-    <div
-      ref={tagRef}
-      className={clsx(
-        "inline-flex items-center justify-center rounded",
-        outerDivClassName
-      )}
-      style={{
-        transform: isFloating
-          ? `translate3d(${offset.x}px, ${offset.y}px, 0)`
-          : undefined,
-        transition: isFloating ? "transform 0.1s ease-out" : undefined,
-        willChange: "transform",
-      }}
-    >
+<div
+  ref={tagRef}
+  className={clsx(
+    "inline-flex items-center justify-center rounded",
+    outerDivClassName
+  )}
+  style={{
+    ...style,
+    transform: isFloating
+      ? `translate3d(${offset.x}px, ${offset.y}px, 0)`
+      : undefined,
+    transition: isFloating ? "transform 0.1s ease-out" : undefined,
+    willChange: "transform",
+  }}
+>
+
       <motion.div
         className={clsx(
           "rounded px-3 py-1 border border-black font-bold uppercase tracking-tighter shadow text-black",

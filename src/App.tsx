@@ -8,7 +8,6 @@ import Hero from "./sections/hero";
 import Spinner from "./components/Spinner";
 import { Bento } from "./sections/bento";
 
-
 function App() {
   const [mounted, setMounted] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -29,11 +28,6 @@ function App() {
     ""
   );
 
-  const rawYSticky = useTransform(scrollY, [0, 800], ["10%", "0%"]);
-  const ySticky = useSpring(rawYSticky, {
-    stiffness: 40,
-    damping: 22,
-  });
 
   const aboutRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
@@ -79,7 +73,6 @@ function App() {
 
   if (!mounted) return null;
 
-
   const theme = createTheme({
     typography: {
       fontFamily: "DM Sans, sans-serif",
@@ -88,25 +81,23 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="relative bg-white">
+      <div className="relative bg-white mb-24 xl:mb-0">
         {!fontsLoaded ? (
           <Spinner />
         ) : (
           <>
-            <Navbar
+            {/* <Navbar
               selected={selected}
               setSelected={setSelected}
               theme={navbarTheme}
-            />
+            /> */}
 
             <main ref={mainRef}>
-              <section className="sticky top-0 h-full z-10">
+              <section className="md:sticky md:top-0 z-10">
                 <Hero />
               </section>
-              <section className="relative z-20 bg-transparent">
-                <motion.div style={{ y: ySticky }} className="w-full">
-                  <Bento />
-                </motion.div>
+              <section className="min-h-screen relative z-20 bg-transparent flex md:items-center md:justify-center">
+                <Bento />
               </section>
             </main>
           </>

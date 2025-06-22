@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 
 type NavbarProps = {
-  theme: string;
   selected: NavItem;
   setSelected: (item: NavItem) => void;
 };
@@ -14,17 +13,15 @@ type NavItem = "About" | "Work" | "Projects" | "";
 
 const NAV_ITEMS: NavItem[] = ["About", "Work", "Projects"];
 
-export default function Navbar({ theme, selected, setSelected }: NavbarProps) {
+export default function Navbar({ selected, setSelected }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isDarkMode = theme === "dark";
   return (
     <header className="fixed top-4 left-0 w-full z-50 px-6">
       <div className="w-full max-w-screen-xl mx-auto flex items-center justify-between">
         <a
           href="#"
           className={clsx(
-            "text-sm font-medium tracking-tight hover:underline",
-            isDarkMode ? "text-black" : "text-white"
+            "text-sm text-black font-medium tracking-tight hover:underline"
           )}
         >
           Camryn Roadley

@@ -44,7 +44,6 @@ const Work = () => {
           </button>
         </div>
       </div>
-
       <RolesCarousel role={role} />
     </section>
   );

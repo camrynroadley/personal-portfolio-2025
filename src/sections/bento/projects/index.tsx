@@ -10,7 +10,7 @@ const Projects = () => {
   return (
     <section className="">
       <SlideFadeIn>
-        <p className="text-white mb-12 md:mb-8 text-base">
+        <p className="text-white mb-8 md:mb-8 text-sm md:text-base">
           I maintain my technical skills and experiment with new tools through
           side projects.
         </p>
