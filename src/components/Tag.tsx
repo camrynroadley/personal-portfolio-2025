@@ -25,7 +25,6 @@ export const Tag = ({
   style,
   backgroundColor,
 }: TagProps): JSX.Element => {
-  console.log("*** inner div: ", innerDivClassName);
   const tagRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
@@ -53,7 +52,6 @@ export const Tag = ({
     duration: 4,
     ease: "easeOut",
     times: [0, 0.1, 0.2, 0.9, 1],
-    // times: [0, 0.3, 0.6, 1],
     repeat: Infinity,
     repeatDelay: 3,
     delay,
@@ -74,24 +72,22 @@ export const Tag = ({
         transition: isFloating ? "transform 0.1s ease-out" : undefined,
         willChange: "transform",
       }}
+      role="note"
+      aria-label={`Floating tag: ${text}`}
+      data-testid={`animated-tag-${text.toLowerCase().replace(/\s+/g, "-")}`}
     >
       <motion.div
         className={clsx(
           "rounded px-3 py-1 border border-black font-bold uppercase tracking-tighter shadow text-black",
           innerDivClassName
         )}
-        style={{
-          minWidth: "auto",
-          backgroundColor,
-        }}
+        style={{ minWidth: "auto", backgroundColor }}
         initial={{ scale: 0.2, opacity: 0 }}
         animate={
           isAnimated
             ? {
                 scale: [0.2, 1.2, 1, 1, 0.2],
                 opacity: [0, 1, 1, 1, 0],
-                // scale: [0.2, 1.2, 0.95, 1],
-                // opacity: [0, 1, 1, 0],
               }
             : undefined
         }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1750629825213" clover="3.2.0">
+  <project timestamp="1750629825213" name="All files">
+    <metrics statements="19" coveredstatements="15" conditionals="9" coveredconditionals="8" methods="9" coveredmethods="5" elements="37" coveredelements="28" complexity="0" loc="19" ncloc="19" packages="1" files="4" classes="4"/>
+    <file name="Card.tsx" path="C:\Users\croad\Documents\portfolio-2025\src\components\Card.tsx">
+      <metrics statements="11" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="20" count="6" type="stmt"/>
+      <line num="22" count="6" type="stmt"/>
+      <line num="36" count="12" type="stmt"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="58" count="0" type="stmt"/>
+      <line num="73" count="0" type="stmt"/>
+      <line num="85" count="0" type="stmt"/>
+    </file>
+    <file name="LinkWithArrow.tsx" path="C:\Users\croad\Documents\portfolio-2025\src\components\LinkWithArrow.tsx">
+      <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="21" count="12" type="cond" truecount="1" falsecount="1"/>
+      <line num="23" count="12" type="stmt"/>
+    </file>
+    <file name="Spinner.tsx" path="C:\Users\croad\Documents\portfolio-2025\src\components\Spinner.tsx">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+    </file>
+    <file name="StaticTag.tsx" path="C:\Users\croad\Documents\portfolio-2025\src\components\StaticTag.tsx">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="12" type="stmt"/>
+    </file>
+  </project>
+</coverage>

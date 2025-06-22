@@ -11,11 +11,20 @@ interface CustomLegendProps {
   responsibilities: Responsibility[];
 }
 
-const pieChartColors = [colors.PINK, colors.LAVENDER, colors.ORANGE, colors.LIGHT_GREEN, colors.DARK_GREEN];
+const pieChartColors = [
+  colors.PINK,
+  colors.LAVENDER,
+  colors.ORANGE,
+  colors.LIGHT_GREEN,
+  colors.DARK_GREEN,
+];
 
 export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
   return (
     <Box
+      role="img"
+      aria-label="Pie chart visualizing key responsibilities"
+      data-testid="pie-chart"
       sx={{
         width: "100%",
         maxWidth: 300,
@@ -51,7 +60,7 @@ export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
       />
     </Box>
   );
-}
+};
 
 export const CustomLegend = ({ responsibilities }: CustomLegendProps) => {
   const maxRows = 3;
@@ -62,23 +71,28 @@ export const CustomLegend = ({ responsibilities }: CustomLegendProps) => {
   }
 
   return (
-    <div className="flex gap-x-6">
+    <div className="flex gap-x-6" role="list" aria-label="Responsibility legend" data-testid="pie-legend">
       {columns.map((col, colIndex) => (
-        <div key={colIndex} className="flex flex-col space-y-1">
-          {col.map((entry, i) => (
-            <div key={entry.label} className="flex items-center space-x-2">
-              <div
-                style={{
-                  backgroundColor: pieChartColors[colIndex * maxRows + i],
-                  width: 12,
-                  height: 12,
-                }}
-              />
-              <span className="text-sm">{entry.label}</span>
-            </div>
-          ))}
-        </div>
+        <ul key={colIndex} className="flex flex-col space-y-1" role="list">
+          {col.map((entry, i) => {
+            const color = pieChartColors[colIndex * maxRows + i];
+            return (
+              <li key={entry.label} className="flex items-center space-x-2" role="listitem">
+                <span
+                  className="rounded-full inline-block"
+                  aria-hidden="true"
+                  style={{
+                    backgroundColor: color,
+                    width: 12,
+                    height: 12,
+                  }}
+                />
+                <span className="text-sm">{entry.label}</span>
+              </li>
+            );
+          })}
+        </ul>
       ))}
     </div>
   );
-}
+};

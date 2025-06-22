@@ -14,7 +14,10 @@ interface BlurTextProps {
   easing?: (t: number) => number;
   onAnimationComplete?: () => void;
   stepDuration?: number;
-};
+  as?: keyof JSX.IntrinsicElements; // optionally render as h1/h2/p/span
+  testId?: string;
+  ariaLabel?: string;
+}
 
 const buildKeyframes = (
   from: Record<string, string | number>,
@@ -45,10 +48,13 @@ export const BlurText = ({
   easing = (t) => t,
   onAnimationComplete,
   stepDuration = 0.35,
+  as: Element = "h1",
+  testId = "blur-text",
+  ariaLabel,
 }: BlurTextProps) => {
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -94,8 +100,16 @@ export const BlurText = ({
     stepCount === 1 ? 0 : i / (stepCount - 1)
   );
 
+  const Tag = Element;
+
   return (
-    <h1 ref={ref} className={`blur-text text-center ${className}`}>
+    <Tag
+      ref={ref}
+      className={`blur-text text-center ${className}`}
+      data-testid={testId}
+      aria-label={ariaLabel || text}
+      role="heading"
+    >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
@@ -125,6 +139,6 @@ export const BlurText = ({
           </motion.span>
         );
       })}
-    </h1>
+    </Tag>
   );
 };

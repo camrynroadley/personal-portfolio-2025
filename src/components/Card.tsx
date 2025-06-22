@@ -1,5 +1,4 @@
 import ReactMarkdown from "react-markdown";
-import "./styles.css";
 import { StaticTag } from "./StaticTag";
 import { LinkWithArrow } from "./LinkWithArrow";
 
@@ -18,18 +17,36 @@ export const Card = ({
   githubLink,
   tags,
 }: CardProps) => {
+  const headingId = `card-title-${title.toLowerCase().replace(/\s+/g, "-")}`;
+
   return (
-    <div className="block w-full rounded-2xl overflow-hidden shadow-lg tracking-tight h-full flex flex-col">
+    <article
+      className="block w-full rounded-2xl overflow-hidden shadow-lg tracking-tight h-full flex flex-col"
+      role="article"
+      aria-labelledby={headingId}
+      data-testid={`project-card-${headingId}`}
+    >
       <div className="bg-[#262626] p-6 flex flex-col flex-grow">
-        <div className="flex flex-col md:flex-row md:space-x-1 space-y-1 md:space-y-0 items-start mb-4">
+        {/* Tags */}
+        <div
+          className="flex flex-col md:flex-row md:space-x-1 space-y-1 md:space-y-0 items-start mb-4"
+          data-testid="card-tags"
+        >
           {tags.map((tag, i) => (
             <StaticTag key={i} text={tag} />
           ))}
         </div>
 
-        <h3 className="text-3xl text-white mb-2 text-left font-medium">
+        {/* Title */}
+        <h3
+          id={headingId}
+          className="text-3xl text-white mb-2 text-left font-medium"
+          data-testid="card-title"
+        >
           {title}
         </h3>
+
+        {/* Description */}
         <ReactMarkdown
           components={{
             p: ({ children }) => (
@@ -44,7 +61,12 @@ export const Card = ({
         >
           {shortDescription}
         </ReactMarkdown>
-        <div className="flex space-x-2 text-gray-300 font-medium text-sm mt-auto">
+
+        {/* Links */}
+        <div
+          className="flex space-x-2 text-gray-300 font-medium text-sm mt-auto"
+          data-testid="card-links"
+        >
           {websiteLink && (
             <LinkWithArrow
               href={websiteLink}
@@ -52,6 +74,7 @@ export const Card = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Visit ${title} website`}
+              data-testid="card-link-website"
             >
               Website
             </LinkWithArrow>
@@ -63,12 +86,13 @@ export const Card = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${title} on GitHub`}
+              data-testid="card-link-github"
             >
               GitHub
             </LinkWithArrow>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
