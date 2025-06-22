@@ -6,7 +6,7 @@ interface LinkWithArrowProps extends React.AnchorHTMLAttributes<HTMLAnchorElemen
   className?: string;
 }
 
-const LinkWithArrow = ({ children, href, className, ...props }: LinkWithArrowProps) => {
+export const LinkWithArrow = ({ children, href, className, ...props }: LinkWithArrowProps) => {
   return (
     <a
       href={href}
@@ -32,5 +32,3 @@ const LinkWithArrow = ({ children, href, className, ...props }: LinkWithArrowPro
     </a>
   );
 };
-
-export default LinkWithArrow;

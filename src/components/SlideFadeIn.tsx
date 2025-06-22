@@ -9,7 +9,7 @@ type SlideFadeInProps = {
   className?: string
 }
 
-export default function SlideFadeIn({ children, delay = 0, className = "" }: SlideFadeInProps) {
+export const SlideFadeIn = ({ children, delay = 0, className = "" }: SlideFadeInProps) => {
   const controls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,

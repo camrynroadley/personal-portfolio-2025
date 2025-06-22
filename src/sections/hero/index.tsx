@@ -1,8 +1,8 @@
 import { useScroll, useTransform, useSpring, motion } from "framer-motion";
 import clsx from "clsx";
-import Tag from "../../components/Tag";
-import BlurText from "../../components/BlurText";
-import SlideFadeIn from "../../components/SlideFadeIn";
+import { Tag } from "../../components/Tag";
+import { BlurText } from "../../components/BlurText";
+import { SlideFadeIn } from "../../components/SlideFadeIn";
 
 interface HeroProps {
   className?: string;

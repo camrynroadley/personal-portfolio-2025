@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useMemo } from "react";
 
-type BlurTextProps = {
+interface BlurTextProps {
   text?: string;
   delay?: number;
   className?: string;
@@ -32,7 +32,7 @@ const buildKeyframes = (
   return keyframes;
 };
 
-const BlurText: React.FC<BlurTextProps> = ({
+export const BlurText = ({
   text = "",
   delay = 200,
   className = "",
@@ -45,7 +45,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   easing = (t) => t,
   onAnimationComplete,
   stepDuration = 0.35,
-}) => {
+}: BlurTextProps) => {
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
@@ -128,5 +128,3 @@ const BlurText: React.FC<BlurTextProps> = ({
     </h1>
   );
 };
-
-export default BlurText;

@@ -13,7 +13,7 @@ interface TagProps {
   style?: React.CSSProperties;
 }
 
-const Tag = ({
+export const Tag = ({
   text,
   isAnimated = true,
   isFloating = true,
@@ -107,5 +107,3 @@ const Tag = ({
     </div>
   );
 };
-
-export default Tag;

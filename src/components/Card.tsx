@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import "./styles.css";
 import { StaticTag } from "./StaticTag";
-import LinkWithArrow from "./LinkWithArrow";
+import { LinkWithArrow } from "./LinkWithArrow";
 
 interface CardProps {
   title: string;
@@ -11,29 +11,15 @@ interface CardProps {
   tags: string[];
 }
 
-const Card = ({
+export const Card = ({
   title,
   shortDescription,
   websiteLink,
   githubLink,
   tags,
 }: CardProps) => {
-
-
   return (
-    // <button
-    //   onClick={() => handleCardClicked(slug)}
-    //   className="block w-full max-w-sm rounded-2xl overflow-hidden shadow-lg tracking-tight h-full flex flex-col transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
-    // >
     <div className="block w-full rounded-2xl overflow-hidden shadow-lg tracking-tight h-full flex flex-col">
-      {/* Top banner */}
-      {/* <div className={gradientClassNames[index]}>
-        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-          {tags.map((tag, i) => (
-            <StaticTag key={i} text={tag} />
-          ))}
-        </div>
-      </div> */}
       <div className="bg-[#262626] p-6 flex flex-col flex-grow">
         <div className="flex flex-col md:flex-row md:space-x-1 space-y-1 md:space-y-0 items-start mb-4">
           {tags.map((tag, i) => (
@@ -84,8 +70,5 @@ const Card = ({
         </div>
       </div>
     </div>
-    // </button>
   );
 };
-
-export default Card;

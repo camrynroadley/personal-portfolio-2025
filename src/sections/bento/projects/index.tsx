@@ -1,7 +1,7 @@
-import Card from "../../../components/Card";
+import { Card } from "../../../components/Card";
 import type { Project } from "../../../types/app";
 import { useProjects } from "../../../context/ProjectsContext";
-import SlideFadeIn from "../../../components/SlideFadeIn";
+import { SlideFadeIn } from "../../../components/SlideFadeIn";
 
 const Projects = () => {
   const { projects, loading } = useProjects();

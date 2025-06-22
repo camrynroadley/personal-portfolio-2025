@@ -12,7 +12,7 @@ interface CustomLegendProps {
 
 const colors = ["#FE7FA2", "#F9E8F9", "#FFC399", "#F2FF9C", "#D5D15D"];
 
-export default function PieAnimation({ responsibilities }: PieAnimationProps) {
+export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
   return (
     <Box
       sx={{
@@ -52,7 +52,7 @@ export default function PieAnimation({ responsibilities }: PieAnimationProps) {
   );
 }
 
-export function CustomLegend({ responsibilities }: CustomLegendProps) {
+export const CustomLegend = ({ responsibilities }: CustomLegendProps) => {
   const maxRows = 3;
   const columns: Responsibility[][] = [];
 

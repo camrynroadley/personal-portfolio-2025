@@ -1,10 +1,11 @@
 import type { Role } from "../types/app";
-import PieAnimation, { CustomLegend } from "./PieChart";
+import { PieAnimation, CustomLegend } from "./PieChart";
 import { StaticTag } from "./StaticTag";
 
 interface RolesCarouselProps {
   role: Role;
 }
+
 export const RolesCarousel = ({ role }: RolesCarouselProps) => {
   return (
     <div className="relative w-full overflow-visible">

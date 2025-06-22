@@ -1,4 +1,4 @@
-import SlideFadeIn from "../../components/SlideFadeIn";
+import { SlideFadeIn } from "../../components/SlideFadeIn";
 import { About } from "./about";
 import Projects from "./projects";
 import Work from "./work";
