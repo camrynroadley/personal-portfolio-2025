@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Tag } from "../../components/Tag";
 import { BlurText } from "../../components/BlurText";
 import { SlideFadeIn } from "../../components/SlideFadeIn";
+import { colors } from "../../constants";
 
 interface HeroProps {
   className?: string;
@@ -10,7 +11,6 @@ interface HeroProps {
 
 const Hero = ({ className }: HeroProps) => {
   const { scrollY } = useScroll();
-
   const yText = useSpring(useTransform(scrollY, [0, 1000], ["0%", "20%"]), {
     stiffness: 40,
     damping: 30,
@@ -39,13 +39,12 @@ const Hero = ({ className }: HeroProps) => {
           direction="top"
           className="font-semibold text-5xl sm:text-6xl md:text-[4.6rem]/16 text-black tracking-tight text-center"
         />
-
         {[
-          { text: "Blending", top: "38%", left: "5%", bg: "#F4799A" },
-          { text: "technical", top: "15%", left: "24%", bg: "#F2FF9C" },
-          { text: "skills", top: "38%", left: "44%", bg: "#FFC399" },
-          { text: "with", top: "56%", right: "30%", bg: "#F9E8F9" },
-          { text: "leadership", top: "74%", right: "10%", bg: "#B8C466" },
+          { text: "Blending", top: "38%", left: "5%", bg: colors.PINK },
+          { text: "technical", top: "15%", left: "24%", bg: colors.LIGHT_GREEN },
+          { text: "skills", top: "38%", left: "44%", bg: colors.ORANGE },
+          { text: "with", top: "56%", right: "30%", bg: colors.LAVENDER },
+          { text: "leadership", top: "74%", right: "10%", bg: colors.DARK_GREEN},
         ].map((tag, i) => {
           return (
             <Tag
@@ -60,11 +59,11 @@ const Hero = ({ className }: HeroProps) => {
                 right: tag.right,
                 position: "absolute",
               }}
+                backgroundColor={tag.bg}
             />
           );
         })}
       </motion.div>
-
       <motion.div
         style={{ opacity: opacityText, y: yText }}
         className="mt-8 text-black text-sm md:text-base font-medium tracking-tight text-center px-12 md:px-12"

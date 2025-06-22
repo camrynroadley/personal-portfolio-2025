@@ -11,6 +11,7 @@ interface TagProps {
   outerDivClassName?: string;
   innerDivClassName?: string;
   style?: React.CSSProperties;
+  backgroundColor?: string;
 }
 
 export const Tag = ({
@@ -22,7 +23,9 @@ export const Tag = ({
   outerDivClassName,
   innerDivClassName,
   style,
+  backgroundColor,
 }: TagProps): JSX.Element => {
+  console.log("*** inner div: ", innerDivClassName);
   const tagRef = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
@@ -57,28 +60,30 @@ export const Tag = ({
   };
 
   return (
-<div
-  ref={tagRef}
-  className={clsx(
-    "inline-flex items-center justify-center rounded",
-    outerDivClassName
-  )}
-  style={{
-    ...style,
-    transform: isFloating
-      ? `translate3d(${offset.x}px, ${offset.y}px, 0)`
-      : undefined,
-    transition: isFloating ? "transform 0.1s ease-out" : undefined,
-    willChange: "transform",
-  }}
->
-
+    <div
+      ref={tagRef}
+      className={clsx(
+        "inline-flex items-center justify-center rounded",
+        outerDivClassName
+      )}
+      style={{
+        ...style,
+        transform: isFloating
+          ? `translate3d(${offset.x}px, ${offset.y}px, 0)`
+          : undefined,
+        transition: isFloating ? "transform 0.1s ease-out" : undefined,
+        willChange: "transform",
+      }}
+    >
       <motion.div
         className={clsx(
           "rounded px-3 py-1 border border-black font-bold uppercase tracking-tighter shadow text-black",
           innerDivClassName
         )}
-        style={{ minWidth: "auto" }}
+        style={{
+          minWidth: "auto",
+          backgroundColor,
+        }}
         initial={{ scale: 0.2, opacity: 0 }}
         animate={
           isAnimated

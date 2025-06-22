@@ -17,17 +17,15 @@ const Projects = () => {
       </SlideFadeIn>
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          {projects.map((project: Project, index) => {
+          {projects.map((project: Project) => {
             return (
               <SlideFadeIn key={project.id}>
                 <Card
-                  slug={project.slug}
                   title={project.title}
                   shortDescription={project.short_description}
                   websiteLink={project.website_link ?? ""}
                   githubLink={project.github_link ?? ""}
                   tags={project.tags ?? []}
-                  index={index}
                 />
               </SlideFadeIn>
             );

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
+import { colors } from "../constants";
 
 export const Navbar = () => {
   const [githubOpen, setGithubOpen] = useState(false);
@@ -32,7 +33,6 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [githubOpen]);
 
-
   useEffect(() => {
     if (githubOpen) {
       timeoutRef.current = setTimeout(() => setGithubOpen(false), 5000);
@@ -53,9 +53,11 @@ export const Navbar = () => {
         >
           Camryn Roadley
         </a>
-
         <div className="flex items-center gap-2 relative">
-          <div className="flex bg-[#161616] px-3 py-2 rounded-full items-center gap-2 relative">
+          <div
+            style={{ backgroundColor: colors.DARKEST_GRAY }}
+            className="flex px-3 py-2 rounded-full items-center gap-2 relative"
+          >
             <a
               href="https://www.linkedin.com/in/camrynroadley/"
               target="_blank"
@@ -105,4 +107,4 @@ export const Navbar = () => {
       </div>
     </header>
   );
-}
+};

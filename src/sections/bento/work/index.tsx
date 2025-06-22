@@ -3,6 +3,7 @@ import { RolesCarousel } from "../../../components/RolesCarousel";
 import { useRoles } from "../../../context/RolesContext";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { colors } from "../../../constants";
 
 const Work = () => {
   const { roles, loading } = useRoles();
@@ -30,14 +31,16 @@ const Work = () => {
         <div className="col-span-1 flex justify-end items-start space-x-2">
           <button
             onClick={prev}
-            className="bg-[#2D2D2D] hover:bg-gray-600 text-white w-10 aspect-square rounded-full shadow-md flex items-center justify-center transition-all hover:cursor-pointer"
+            style={{ backgroundColor: colors.DARK_GRAY }}
+            className="text-white w-10 aspect-square rounded-full shadow-md flex items-center justify-center transition-all hover:cursor-pointer"
             aria-label="Previous role"
           >
             <ChevronLeftIcon fontSize="small" />
           </button>
           <button
             onClick={next}
-            className="bg-[#2D2D2D] hover:bg-gray-600 text-white w-10 aspect-square rounded-full shadow-md flex items-center justify-center transition-all hover:cursor-pointer"
+            style={{ backgroundColor: colors.DARK_GRAY }}
+            className="text-white w-10 aspect-square rounded-full shadow-md flex items-center justify-center transition-all hover:cursor-pointer"
             aria-label="Next role"
           >
             <ChevronRightIcon fontSize="small" />

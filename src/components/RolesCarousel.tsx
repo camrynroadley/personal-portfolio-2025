@@ -1,3 +1,4 @@
+import { colors } from "../constants";
 import type { Role } from "../types/app";
 import { PieAnimation, CustomLegend } from "./PieChart";
 import { StaticTag } from "./StaticTag";
@@ -9,7 +10,10 @@ interface RolesCarouselProps {
 export const RolesCarousel = ({ role }: RolesCarouselProps) => {
   return (
     <div className="relative w-full overflow-visible">
-      <div className="relative bg-[#2D2D2D] w-full rounded-xl shadow-lg px-4 py-8 overflow-visible">
+      <div
+        style={{ backgroundColor: colors.DARK_GRAY }}
+        className="relative w-full rounded-xl shadow-lg px-4 py-8 overflow-visible"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-3 relative space-y-8 lg:space-y-0">
           {role.responsibilities && (
             <div className="col-span-1 flex justify-center items-center">

@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
 import type { Responsibility } from "../types/app";
+import { colors } from "../constants";
 
 interface PieAnimationProps {
   responsibilities: Responsibility[];
@@ -10,7 +11,7 @@ interface CustomLegendProps {
   responsibilities: Responsibility[];
 }
 
-const colors = ["#FE7FA2", "#F9E8F9", "#FFC399", "#F2FF9C", "#D5D15D"];
+const pieChartColors = [colors.PINK, colors.LAVENDER, colors.ORANGE, colors.LIGHT_GREEN, colors.DARK_GREEN];
 
 export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
   return (
@@ -26,7 +27,7 @@ export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
       }}
     >
       <PieChart
-        colors={colors}
+        colors={pieChartColors}
         hideLegend
         series={[
           {
@@ -68,7 +69,7 @@ export const CustomLegend = ({ responsibilities }: CustomLegendProps) => {
             <div key={entry.label} className="flex items-center space-x-2">
               <div
                 style={{
-                  backgroundColor: colors[colIndex * maxRows + i],
+                  backgroundColor: pieChartColors[colIndex * maxRows + i],
                   width: 12,
                   height: 12,
                 }}

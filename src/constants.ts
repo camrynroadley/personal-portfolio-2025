@@ -1,0 +1,9 @@
+export const colors = {
+  DARKEST_GRAY: "#161616",
+  DARK_GRAY: "#2D2D2D",
+  PINK: "#F4799A",
+  LAVENDER: "#F9E8F9",
+  LIGHT_GREEN: "#F2FF9C",
+  DARK_GREEN: "#D5D15D",
+  ORANGE: "#FFC399",
+};
