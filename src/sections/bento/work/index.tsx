@@ -5,7 +5,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { colors } from "../../../constants";
 
-const Work = () => {
+export const Work = () => {
   const { roles, loading } = useRoles();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const role = roles[selectedIndex];
@@ -81,5 +81,3 @@ const Work = () => {
     </section>
   );
 };
-
-export default Work;

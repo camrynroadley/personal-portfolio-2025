@@ -1,8 +1,8 @@
 import { SlideFadeIn } from "../../components/SlideFadeIn";
 import { colors } from "../../constants";
 import { About } from "./about";
-import Projects from "./projects";
-import Work from "./work";
+import { Projects } from "./projects";
+import { Work } from "./work";
 
 export const Bento = () => {
   return (

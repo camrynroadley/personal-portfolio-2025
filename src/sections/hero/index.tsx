@@ -9,7 +9,7 @@ interface HeroProps {
   className?: string;
 }
 
-const Hero = ({ className }: HeroProps) => {
+export const Hero = ({ className }: HeroProps) => {
   const { scrollY } = useScroll();
 
   const yText = useSpring(useTransform(scrollY, [0, 1000], ["0%", "20%"]), {
@@ -86,5 +86,3 @@ const Hero = ({ className }: HeroProps) => {
     </section>
   );
 };
-
-export default Hero;

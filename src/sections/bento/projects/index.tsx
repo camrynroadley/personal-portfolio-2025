@@ -3,7 +3,7 @@ import type { Project } from "../../../types/app";
 import { useProjects } from "../../../context/ProjectsContext";
 import { SlideFadeIn } from "../../../components/SlideFadeIn";
 
-const Projects = () => {
+export const Projects = () => {
   const { projects, loading } = useProjects();
 
   if (loading) {
@@ -61,5 +61,3 @@ const Projects = () => {
     </section>
   );
 };
-
-export default Projects;
