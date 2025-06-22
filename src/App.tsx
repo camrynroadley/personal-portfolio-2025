@@ -44,6 +44,12 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (isReady) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [isReady]);
+
   // Show/hide navbar on scroll
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (y) => {
