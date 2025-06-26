@@ -66,7 +66,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="relative bg-white mb-24 xl:mb-0" data-testid="app-root">
+      <div className="relative bg-white mb-24" data-testid="app-root">
         {!isReady ? (
           <Spinner data-testid="spinner" />
         ) : (
