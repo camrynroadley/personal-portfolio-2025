@@ -1,7 +1,5 @@
-import { getProjects } from "../../../src/delegates/getProjects";
-
 // Mock the dynamic import of the supabase client
-jest.mock("../supabase/client", () => ({
+jest.mock("../../../src/supabase/client", () => ({
   supabase: {
     from: jest.fn(() => ({
       select: jest.fn(),
@@ -24,7 +22,7 @@ beforeEach(() => {
     select: mockSelect,
   });
 
-  jest.doMock("../supabase/client", () => ({
+  jest.doMock("../../../src/supabase/client", () => ({
     supabase: mockedSupabase,
   }));
 });

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Bento } from "../../../../src/sections/bento";
+import { Bento } from "../../../../src/sections/bento/";
 
 // Mock the child components
 jest.mock("../../../../src/sections/bento/about", () => ({
@@ -12,6 +12,10 @@ jest.mock("../../../../src/sections/bento/work", () => ({
 
 jest.mock("../../../../src/sections/bento/projects", () => ({
   Projects: () => <div data-testid="mock-project">Mock Project</div>,
+}));
+
+jest.mock("../../../../src/components/SlideFadeIn", () => ({
+  SlideFadeIn: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
 describe("Bento", () => {

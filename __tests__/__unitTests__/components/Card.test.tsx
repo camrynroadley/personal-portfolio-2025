@@ -26,23 +26,22 @@ jest.mock("react-markdown", () => ({
 }));
 
 describe("Card", () => {
-  beforeEach(() => {
-    render(<Card {...mockProps} />);
-  });
-
   it("renders the card title", () => {
+    render(<Card {...mockProps} />);
     const titleEl = screen.getByTestId("card-title");
     expect(titleEl).toBeInTheDocument();
     expect(titleEl).toHaveTextContent("Test Project");
   });
 
   it("renders markdown content", () => {
+    render(<Card {...mockProps} />);
     expect(screen.getByText("Bold text")).toBeInTheDocument();
     const bold = screen.getByText("Bold text");
     expect(bold.tagName.toLowerCase()).toBe("strong");
   });
 
   it("renders all provided tags", () => {
+    render(<Card {...mockProps} />);
     const tagContainer = screen.getByTestId("card-tags");
     mockProps.tags.forEach((tag) => {
       expect(tagContainer).toHaveTextContent(tag);
@@ -50,6 +49,7 @@ describe("Card", () => {
   });
 
   it("renders website link with correct href", () => {
+    render(<Card {...mockProps} />);
     const websiteLink = screen.getByTestId(
       "card-link-website"
     ) as HTMLAnchorElement;
@@ -58,6 +58,7 @@ describe("Card", () => {
   });
 
   it("renders GitHub link with correct href", () => {
+    render(<Card {...mockProps} />);
     const githubLink = screen.getByTestId(
       "card-link-github"
     ) as HTMLAnchorElement;
@@ -66,8 +67,33 @@ describe("Card", () => {
   });
 
   it("has the correct data-testid on the root element", () => {
+    render(<Card {...mockProps} />);
     const id = `project-card-card-title-test-project`;
     const root = screen.getByTestId(id);
     expect(root).toBeInTheDocument();
+  });
+
+  it("renders without website link", () => {
+    render(<Card {...mockProps} websiteLink={""} />);
+    expect(screen.queryByTestId("card-link-website")).not.toBeInTheDocument();
+  });
+
+  it("renders without GitHub link", () => {
+    render(<Card {...mockProps} githubLink={""} />);
+    expect(screen.getByTestId("card-link-website")).toBeInTheDocument();
+    expect(screen.queryByTestId("card-link-github")).not.toBeInTheDocument();
+  });
+
+  it("renders correctly with no tags", () => {
+    render(<Card {...mockProps} tags={[]} />);
+    expect(screen.getByTestId("card-tags")).toBeEmptyDOMElement();
+  });
+
+  it("renders plain text in description", () => {
+    render(
+      <Card {...mockProps} shortDescription={"This is plain text only."} />
+    );
+
+    expect(screen.getByText("This is plain text only.")).toBeInTheDocument();
   });
 });

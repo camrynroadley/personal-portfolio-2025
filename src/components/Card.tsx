@@ -67,7 +67,7 @@ export const Card = ({
           className="flex space-x-2 text-gray-300 font-medium text-sm mt-auto"
           data-testid="card-links"
         >
-          {websiteLink && (
+          {!!websiteLink && (
             <LinkWithArrow
               href={websiteLink}
               onClick={(e) => e.stopPropagation()}
@@ -79,7 +79,7 @@ export const Card = ({
               Website
             </LinkWithArrow>
           )}
-          {githubLink && (
+          {!!githubLink && (
             <LinkWithArrow
               href={githubLink}
               onClick={(e) => e.stopPropagation()}

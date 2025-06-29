@@ -1,5 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { ProjectsProvider, useProjects } from "../../../src/context/ProjectsContext";
+import {
+  ProjectsProvider,
+  useProjects,
+} from "../../../src/context/ProjectsContext";
 import { getProjects } from "../../../src/delegates/getProjects";
 
 jest.mock("../../../src/delegates/getProjects", () => ({
@@ -8,7 +11,6 @@ jest.mock("../../../src/delegates/getProjects", () => ({
 
 const mockGetProjects = getProjects as jest.MockedFunction<typeof getProjects>;
 
-// Test component to consume the context
 const Consumer = () => {
   const { projects, loading, refreshProjects } = useProjects();
 
@@ -39,7 +41,6 @@ describe("ProjectsContext", () => {
       </ProjectsProvider>
     );
 
-    // Initially loading should be true
     expect(screen.getByTestId("loading")).toHaveTextContent("true");
 
     await waitFor(() => {
@@ -50,8 +51,12 @@ describe("ProjectsContext", () => {
 
   it("refreshProjects updates the context with new projects", async () => {
     mockGetProjects
-      .mockResolvedValueOnce([{ id: "1", title: "Project A", short_description: "", tags: [] }])
-      .mockResolvedValueOnce([{ id: "2", title: "Project B", short_description: "", tags: [] }]);
+      .mockResolvedValueOnce([
+        { id: "1", title: "Project A", short_description: "", tags: [] },
+      ])
+      .mockResolvedValueOnce([
+        { id: "2", title: "Project B", short_description: "", tags: [] },
+      ]);
 
     render(
       <ProjectsProvider>
@@ -59,16 +64,14 @@ describe("ProjectsContext", () => {
       </ProjectsProvider>
     );
 
-    // Initial load
     await waitFor(() => {
       expect(screen.getByTestId("projects-count")).toHaveTextContent("1");
     });
 
-    // Refresh projects
     screen.getByTestId("refresh-button").click();
 
     await waitFor(() => {
-      expect(screen.getByTestId("projects-count")).toHaveTextContent("1"); // Because mock returns [{ id: "2", ... }]
+      expect(screen.getByTestId("projects-count")).toHaveTextContent("1");
     });
   });
 
@@ -78,8 +81,12 @@ describe("ProjectsContext", () => {
       return null;
     };
 
-    expect(() => render(<BrokenConsumer />)).toThrowError(
-      "useProjects must be used within a ProjectsProvider"
-    );
+    try {
+      render(<BrokenConsumer />);
+    } catch (e) {
+      expect((e as Error).message).toBe(
+        "useProjects must be used within a ProjectsProvider"
+      );
+    }
   });
 });
