@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useScroll, motion, AnimatePresence } from "framer-motion";
 import "./index.css";
 import "./assets/fontawesome";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useScroll, motion, AnimatePresence } from "framer-motion";
 import { Hero } from "./sections/hero";
 import { Bento } from "./sections/bento";
 import { Navbar } from "./components/Navbar";

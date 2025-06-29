@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { ProjectsProvider, useProjects } from "../../../src/context/ProjectsContext";
 import { getProjects } from "../../../src/delegates/getProjects";
-import React from "react";
 
 jest.mock("../../../src/delegates/getProjects", () => ({
   getProjects: jest.fn().mockResolvedValue([]),
