@@ -15,6 +15,7 @@ Welcome to my **personal portfolio website**. Built with modern front-end techno
 - **Framework**: React (Vite)
 - **Language**: TypeScript
 - **Database**: Supabase (PostgreSQL)
+- **Security**: Supabase's public anon key + Row Level Security (RLS) policies
 - **Styling**: Tailwind CSS, Framer Motion, Aceternity UI
 - **Testing**: Jest, React Testing Library
 - **Deployment**: Vercel (Preview + Production environments)
