@@ -51,9 +51,8 @@ export const Navbar = () => {
     >
       <div className="w-full max-w-screen-xl mx-auto flex items-center justify-between">
         <a
-          href="#"
           className={clsx(
-            "text-sm text-black font-medium tracking-tight hover:underline"
+            "text-sm text-black font-medium tracking-tight"
           )}
         >
           Camryn Roadley
@@ -102,17 +101,6 @@ export const Navbar = () => {
                     data-testid="navbar-github-dropdown"
                   >
                     <a
-                      href="https://github.com/camrynroadley"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block px-3 py-1 hover:bg-[#3F3F3F] rounded transition"
-                      role="menuitem"
-                      aria-label="Personal GitHub profile (opens in new tab)"
-                      data-testid="navbar-github-personal"
-                    >
-                      Personal GitHub
-                    </a>
-                    <a
                       href="https://github.com/croadley"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -122,6 +110,17 @@ export const Navbar = () => {
                       data-testid="navbar-github-professional"
                     >
                       Professional GitHub
+                    </a>
+                    <a
+                      href="https://github.com/camrynroadley"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-3 py-1 hover:bg-[#3F3F3F] rounded transition"
+                      role="menuitem"
+                      aria-label="Personal GitHub profile (opens in new tab)"
+                      data-testid="navbar-github-personal"
+                    >
+                      Personal GitHub
                     </a>
                   </motion.div>
                 )}

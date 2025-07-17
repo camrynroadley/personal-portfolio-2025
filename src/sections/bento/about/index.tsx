@@ -51,17 +51,6 @@ export const About = () => {
           </li>
           <li>
             <a
-              href="https://github.com/camrynroadley"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-              aria-label="Personal GitHub profile (opens in a new tab)"
-            >
-              GitHub <StaticTag text="Personal" />
-            </a>
-          </li>
-          <li>
-            <a
               href="https://github.com/croadley"
               target="_blank"
               rel="noopener noreferrer"
@@ -69,6 +58,17 @@ export const About = () => {
               aria-label="Professional GitHub profile (opens in a new tab)"
             >
               GitHub <StaticTag text="Professional" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/camrynroadley"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              aria-label="Personal GitHub profile (opens in a new tab)"
+            >
+              GitHub <StaticTag text="Personal" />
             </a>
           </li>
         </ul>
@@ -87,10 +87,9 @@ export const About = () => {
           WHAT I DO
         </h3>
         <ul className="space-y-1 text-lg/6">
-          <li>Web Design</li>
-          <li>Web Development</li>
-          <li>Product Management</li>
+          <li>Full-Stack Development</li>
           <li>Technical Program Management</li>
+          <li>Release Engineering</li>
         </ul>
       </section>
     </section>

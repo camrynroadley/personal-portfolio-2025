@@ -1,22 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RolesCarousel } from "../../../components/RolesCarousel";
 import { useRoles } from "../../../context/RolesContext";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { colors } from "../../../constants";
+import { Role } from "../../../types/app";
 
 export const Work = () => {
   const { roles, loading } = useRoles();
+  const [sortedRoles, setSortedRoles] = useState<Role[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const role = roles[selectedIndex];
+
+  const role = sortedRoles[selectedIndex] || null;
 
   const prev = () => {
-    setSelectedIndex((i) => (i === 0 ? roles.length - 1 : i - 1));
+    setSelectedIndex((i) => (i === 0 ? sortedRoles.length - 1 : i - 1));
   };
 
   const next = () => {
-    setSelectedIndex((i) => (i === roles.length - 1 ? 0 : i + 1));
+    setSelectedIndex((i) => (i === sortedRoles.length - 1 ? 0 : i + 1));
   };
+
+  useEffect(() => {
+    if (!loading && roles.length > 0) {
+      const sorted = [...roles].sort((a, b) => a.id - b.id);
+      setSortedRoles(sorted);
+
+      const indexOfId1 = sorted.findIndex((r) => r.id === 1);
+      setSelectedIndex(indexOfId1 >= 0 ? indexOfId1 : 0);
+    }
+  }, [loading, roles]);
 
   if (loading) {
     return (
@@ -47,7 +60,7 @@ export const Work = () => {
       >
         <p className="col-span-3 text-sm md:text-base max-w-2xl">
           I have worked as a software developer for five years, transitioning
-          from a <b>junior front-end developer</b> to a{" "}
+          from a <b>junior full-stack developer</b> to a{" "}
           <b>senior full-stack developer</b> during this time.
         </p>
 
@@ -76,7 +89,7 @@ export const Work = () => {
         </div>
       </div>
       <div data-testid="role-carousel">
-        <RolesCarousel role={role} />
+        {role && <RolesCarousel role={role} />}
       </div>
     </section>
   );
