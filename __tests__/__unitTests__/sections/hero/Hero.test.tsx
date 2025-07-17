@@ -3,6 +3,7 @@ import { Hero } from "../../../../src/sections/hero";
 
 jest.mock("framer-motion", () => {
   const actual = jest.requireActual("framer-motion");
+
   return {
     ...actual,
     useScroll: () => ({ scrollY: { on: jest.fn() } }),
@@ -10,10 +11,13 @@ jest.mock("framer-motion", () => {
     useSpring: () => 0,
     motion: {
       ...actual.motion,
-      div: ({ children, ...props }) => <div {...props}>{children}</div>,
+      div: ({ children, ...props }: { children?: React.ReactNode }) => (
+        <div {...props}>{children}</div>
+      ),
     },
   };
 });
+
 
 jest.mock("../../../../src/components/BlurText", () => ({
   BlurText: ({ text }: { text: string }) => <p data-testid="blur-text">{text}</p>,

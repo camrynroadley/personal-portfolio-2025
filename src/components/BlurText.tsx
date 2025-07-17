@@ -1,5 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState, useMemo } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  ElementType,
+} from "react";
+import React from "react";
 
 interface BlurTextProps {
   text?: string;
@@ -14,7 +22,7 @@ interface BlurTextProps {
   easing?: (t: number) => number;
   onAnimationComplete?: () => void;
   stepDuration?: number;
-  as?: keyof JSX.IntrinsicElements; // optionally render as h1/h2/p/span
+  as?: ElementType; // ✅ React-compatible tag or component
   testId?: string;
   ariaLabel?: string;
 }
@@ -48,13 +56,12 @@ export const BlurText = ({
   easing = (t) => t,
   onAnimationComplete,
   stepDuration = 0.35,
-  as: Element = "h1",
+  as: Tag = "h1", // ✅ ElementType fallback
   testId = "blur-text",
   ariaLabel,
 }: BlurTextProps) => {
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -70,6 +77,8 @@ export const BlurText = ({
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
+
+  const [inView, setInView] = useState(false);
 
   const defaultFrom = useMemo(
     () =>
@@ -100,11 +109,9 @@ export const BlurText = ({
     stepCount === 1 ? 0 : i / (stepCount - 1)
   );
 
-  const Tag = Element;
-
   return (
     <Tag
-      ref={ref}
+      ref={ref as any}
       className={`blur-text text-center ${className}`}
       data-testid={testId}
       aria-label={ariaLabel || text}
@@ -117,8 +124,8 @@ export const BlurText = ({
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
+          ease: easing,
         };
-        (spanTransition as any).ease = easing;
 
         return (
           <motion.span

@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-require-imports */
 import { render, screen, act } from "@testing-library/react";
 import { Tag } from "../../../src/components/Tag";
-import userEvent from "@testing-library/user-event";
-
 // Helper to flush motion animations and effects
 jest.mock("framer-motion", () => {
   const React = require("react");
   return {
     ...jest.requireActual("framer-motion"),
     motion: {
-      div: React.forwardRef((props: any, ref) => <div ref={ref} {...props} />),
-      span: React.forwardRef((props: any, ref) => <span ref={ref} {...props} />),
+      div: React.forwardRef((props: any, ref: any) => <div ref={ref} {...props} />),
+      span: React.forwardRef((props: any, ref: any) => <span ref={ref} {...props} />),
     },
   };
 });
