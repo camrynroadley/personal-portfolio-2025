@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
+import { useMediaQuery } from "@mui/material";
 import type { Responsibility } from "../types/app";
 import { colors } from "../constants";
 
@@ -63,21 +64,36 @@ export const PieAnimation = ({ responsibilities }: PieAnimationProps) => {
 };
 
 export const CustomLegend = ({ responsibilities }: CustomLegendProps) => {
+  const isSmallScreen = useMediaQuery("(max-width: 640px)");
   const maxRows = 3;
+
   const columns: Responsibility[][] = [];
 
-  for (let i = 0; i < responsibilities.length; i += maxRows) {
-    columns.push(responsibilities.slice(i, i + maxRows));
+  if (isSmallScreen) {
+    columns.push(responsibilities);
+  } else {
+    for (let i = 0; i < responsibilities.length; i += maxRows) {
+      columns.push(responsibilities.slice(i, i + maxRows));
+    }
   }
 
   return (
-    <div className="flex gap-x-6" role="list" aria-label="Responsibility legend" data-testid="pie-legend">
+    <div
+      className={`flex ${isSmallScreen ? "flex-col" : "flex-row"} gap-y-0 sm:gap-x-6`}
+      role="list"
+      aria-label="Responsibility legend"
+      data-testid="pie-legend"
+    >
       {columns.map((col, colIndex) => (
         <ul key={colIndex} className="flex flex-col space-y-1" role="list">
           {col.map((entry, i) => {
-            const color = pieChartColors[colIndex * maxRows + i];
+            const color = pieChartColors[colIndex * maxRows + i] || "#ccc";
             return (
-              <li key={entry.label} className="flex items-center space-x-2" role="listitem">
+              <li
+                key={entry.label}
+                className="flex items-center space-x-2"
+                role="listitem"
+              >
                 <span
                   className="rounded-full inline-block"
                   aria-hidden="true"
